@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Xls</string>
+    <string name="hint">Copy text for processing</string>
+    <string name="process_button">Process text</string>
+    <string name="process_button_test">Test process text</string>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hint">Добавьте текст для обработки</string>
+    <string name="process_button">Обработать строку</string>
+    <string name="process_button_test">Обработать строку(тест.)</string>
+</resources>
