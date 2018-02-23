@@ -1,42 +1,29 @@
 package com.example.a007.xml;
 
 import android.Manifest;
-import android.os.Environment;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Row;
+import com.example.a007.xml.Processor.Process;
+import com.example.a007.xml.Processor.ProcessTest;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.regex.*;
-
-import java.util.Arrays;
 
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 
+    public static final String LOG_TAG = "proscrit";
     private EditText edtTxt;
-    private String[] stringArray;
 
 
     @Override
@@ -76,14 +63,14 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             case R.id.button_1:
                 if (ContextCompat.checkSelfPermission(MainActivity.this,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE) != PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(MainActivity.this,
-                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                            MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE);
+                        ActivityCompat.requestPermissions(MainActivity.this,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE);
                 }
-
-                if (textToIntArray() != null) {
+                if (new Process(this).testTextToIntArray()) {
+                    Process process = new Process(this, edtTxt.toString());
                     try {
-                        doExcel(textToIntArray());
+                        process.ProcessString();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -96,8 +83,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 break;
 
             case R.id.button_3:
+                ProcessTest processTest = new ProcessTest(this, edtTxt.toString());
                 try {
-                    doExcelTest();
+                    processTest.doExcelTest();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -106,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     }
 
 
-    private void doExcel(int[] array) throws IOException {
+/*    private void doExcel(int[] array) throws IOException {
 
         Cell cell;
         Row row;
@@ -145,9 +133,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         } else {
             Toast.makeText(this, file.getName() + " doesn't exist!", Toast.LENGTH_LONG).show();
         }
-    }
+    }*/
 
-    @Nullable
+/*    @Nullable
     private int[] textToIntArray() {
 
         String edt1;
@@ -195,9 +183,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
             }
         }
         return null;
-    }
+    }*/
 
-    private void doExcelTest() throws IOException {
+/*    private void doExcelTest() throws IOException {
         Cell cell;
         Row row;
         Pattern p;
@@ -265,5 +253,5 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         } else {
             Toast.makeText(this, file.getName() + " doesn't exist!", Toast.LENGTH_LONG).show();
         }
-    }
+    }*/
 }
