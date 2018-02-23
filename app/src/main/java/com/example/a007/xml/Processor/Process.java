@@ -4,7 +4,6 @@ package com.example.a007.xml.Processor;
 import android.content.Context;
 import android.os.Environment;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.widget.Toast;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -17,9 +16,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 
 public class Process {
@@ -120,7 +119,6 @@ public class Process {
                         for (int i = 0; i < stringArray.length; i++) {
                             intArray[i] = Integer.parseInt(stringArray[i]);
                         }
-                        Log.v("proscrit", Arrays.toString(intArray));
 
                         return intArray;
                     }

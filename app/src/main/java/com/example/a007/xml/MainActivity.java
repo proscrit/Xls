@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                         new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                         MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE);
                 }
-                if (new Process(this).testTextToIntArray()) {
-                    Process process = new Process(this, edtTxt.toString());
+                if (!new Process(this).testTextToIntArray()) {
+                    Process process = new Process(this, edtTxt.getText().toString());
                     try {
                         process.ProcessString();
                     } catch (IOException e) {
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 break;
 
             case R.id.button_3:
-                ProcessTest processTest = new ProcessTest(this, edtTxt.toString());
+                ProcessTest processTest = new ProcessTest(this, edtTxt.getText().toString());
                 try {
                     processTest.doExcelTest();
                 } catch (IOException e) {
