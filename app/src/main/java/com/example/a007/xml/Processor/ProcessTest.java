@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
@@ -20,10 +21,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static com.example.a007.xml.MainActivity.LOG_TAG;
+import static com.example.a007.xml.Processor.CreateCellStyle.createCellStyle;
 
 public class ProcessTest {
     private final Context mContext;
     private final String mInputString;
+    private final BorderStyle thin = BorderStyle.THIN;
 
 
     public ProcessTest(final Context mContext, final String mInputString) {
@@ -88,6 +91,7 @@ public class ProcessTest {
                                     row = sheet.getRow(intArray[i] - 1);
                                     cell = row.createCell(4, CellType.NUMERIC);
                                     cell.setCellValue(intArray[i + 1]);
+                                    createCellStyle(workbook, cell, thin, thin, thin, thin);
                                 }
                             }
                         }
