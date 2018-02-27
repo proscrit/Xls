@@ -29,7 +29,6 @@ public class Process {
     private final BorderStyle thin = BorderStyle.THIN;
 
 
-
     public Process(final Context mContext) {
         this.mContext = mContext;
         this.mInputString = null;
@@ -79,13 +78,14 @@ public class Process {
 
                 Toast.makeText(mContext, "Done!", Toast.LENGTH_LONG).show();
 
-                } else {
-                    Toast.makeText(mContext, "Error: InputString null", Toast.LENGTH_LONG).show();
-                }
-       } else {
-           Toast.makeText(mContext, file.getName() + " doesn't exist!", Toast.LENGTH_LONG).show();
-       }
+            } else {
+                Toast.makeText(mContext, "Error: InputString null", Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(mContext, file.getName() + " doesn't exist!", Toast.LENGTH_LONG).show();
+        }
     }
+
     @Nullable
     private int[] textToIntArray() {
 
@@ -132,6 +132,7 @@ public class Process {
                                 intArray[i] = Integer.parseInt(stringArray[i]);
                             }
                             return intArray;
+
                         } else {
                             stringArray = q.split(",");
                             int[] intArray = new int[stringArray.length];
@@ -146,6 +147,7 @@ public class Process {
         }
         return null;
     }
+
     public void ProcessString() throws IOException {
         doExcel(textToIntArray());
     }

@@ -6,11 +6,11 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
 
-public class CreateCellStyle {
+class CreateCellStyle {
 
 
-    public static void createCellStyle(Workbook wb, Cell cell, BorderStyle styleBorderBottom, BorderStyle styleBorderLeft,
-                                       BorderStyle styleBorderRight, BorderStyle styleBorderTop) {
+    static void createCellStyle(Workbook wb, Cell cell, BorderStyle styleBorderBottom, BorderStyle styleBorderLeft,
+                                BorderStyle styleBorderRight, BorderStyle styleBorderTop) {
         CellStyle style = wb.createCellStyle();
         style.setBorderBottom(styleBorderBottom);
         style.setBorderLeft(styleBorderLeft);

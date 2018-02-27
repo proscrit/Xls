@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -31,6 +32,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final int MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE = 1;
+
+        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE);
+            Log.i(LOG_TAG, "checkSelfPermission");
+        }
+
         Button btn1;
         Button btn2;
         Button btn3;
@@ -53,20 +61,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
     public void onClick(View v) {
 
-        final int MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE = 1;
-
         if (TextUtils.isEmpty(edtTxt.getText().toString())) {
             Toast.makeText(this, "Nothing at input field", Toast.LENGTH_LONG).show();
             return;
         }
+
         switch (v.getId()) {
             case R.id.button_1:
-                if (ContextCompat.checkSelfPermission(MainActivity.this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(MainActivity.this,
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        MY_PERMISSIONS_WRITE_EXTERNAL_STORAGE);
-                }
                 if (!new Process(this).testTextToIntArray()) {
                     Process process = new Process(this, edtTxt.getText().toString());
                     try {

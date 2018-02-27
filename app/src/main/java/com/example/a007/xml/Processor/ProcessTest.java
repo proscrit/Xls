@@ -34,8 +34,8 @@ public class ProcessTest {
         this.mInputString = mInputString;
     }
 
-
     public void doExcelTest() throws IOException {
+
         Cell cell;
         Row row;
         Pattern p;
